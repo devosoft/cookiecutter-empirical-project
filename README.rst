@@ -35,7 +35,7 @@ Then:
 
 * Create a repo and put it there.
 * Add the repo to your Travis-CI_ account.
-* To enable automatic GitHub pages deployment, `securely store`_ a secret GithHub access token to the Travis-CI environment variable GH_TOKEN`_ and activate Github Pages in your repo settings.
+* To enable automatic GitHub pages deployment, `securely store`_ a secret GithHub access token to the Travis-CI environment variable `GH_TOKEN` and activate Github Pages in your repo settings.
 * Add the repo to your ReadTheDocs_ account + turn on the ReadTheDocs service hook.
 
 .. _`Empirical C++ Library`: https://github.com/devosoft/Empirical
