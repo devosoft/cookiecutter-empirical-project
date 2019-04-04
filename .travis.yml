@@ -9,6 +9,9 @@ python:
 - "3.6"
 
 install:
+- sudo apt-get install -qq g++-8 
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
+- sudo apt-get install build-essential libstdc++-7-dev # might have to happen after we update g++
 - pip install --user cookiecutter
 - git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && git pull && ./emsdk install latest && ./emsdk activate latest && . ./emsdk_env.sh && cd ..
 
