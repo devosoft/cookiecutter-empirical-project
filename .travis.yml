@@ -24,7 +24,7 @@ script:
 after_success:
 - git config --global user.email "travis@travis-ci.org"
 - git config --global user.name "Travis CI"
-- cd cut-empirical-project
+- cd cookiecutter-empirical-project
 - make clean
 - git init
 - git remote add origin https://${GH_TOKEN}@github.com/devosoft/cookiecutter-empirical-project.git > /dev/null 2>&1
