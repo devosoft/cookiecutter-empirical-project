@@ -1,0 +1,16 @@
+dist: trusty
+sudo: required
+
+language: node_js
+node_js:
+- "8.11.3"
+
+python:
+- '3.5'
+
+install:
+- git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && git pull && ./emsdk install latest && ./emsdk activate latest && . ./emsdk_env.sh
+- pip3 install cookiecutter
+
+script:
+- make test
