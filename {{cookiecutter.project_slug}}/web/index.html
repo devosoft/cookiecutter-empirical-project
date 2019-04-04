@@ -3,7 +3,7 @@
 <head>
 {% if cookiecutter.landing_page == 'Yes' -%}
 <!-- uncomment this meta tag to auto redirect from the landing page -->
-<!-- <meta http-equiv="refresh" content="0; URL='web/{{ cookiecutter.project_slug }}'" /> -->
+<!-- <meta http-equiv="refresh" content="0; URL='{{ cookiecutter.project_slug }}'" /> -->
 {% else -%}
 <!-- remove this meta tag to disable auto redirect from the landing page -->
 <meta http-equiv="refresh" content="0; URL='{{ cookiecutter.project_slug }}'" />
