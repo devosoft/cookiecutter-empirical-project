@@ -30,9 +30,9 @@ Features
 Credits
 -------
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+This package was created with Cookiecutter_ and the `devosoft/cookiecutter-empirical-project`_ project template.
 
 
 .. _`https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}`: https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`devosoft/cookiecutter-empirical-project`: https://github.com/devosoft/empirical-project
+.. _`devosoft/cookiecutter-empirical-project`: https://github.com/devosoft/cookiecutter-empirical-project
