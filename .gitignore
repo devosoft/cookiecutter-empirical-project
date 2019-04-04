@@ -20,5 +20,7 @@ a.out
 a.out.js
 
 Empirical/
-project_name/
 emsdk/
+
+{{ cookiecutter.project_slug }}
+
