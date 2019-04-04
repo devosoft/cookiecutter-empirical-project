@@ -5,7 +5,7 @@ Empirical:
 
 test: Empirical
 	echo "\n\n\n\n\n\n\n\n1\n\n" | cookiecutter . \
-	&& cd project_name && make test
+	&& cd cut-empirical-project && make test
 
 clean:
-	rm -rf Empirical project_name emsdk
+	rm -rf Empirical cut-emprical-project emsdk
