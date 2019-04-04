@@ -28,11 +28,10 @@ after_success:
 - make clean
 - git init
 - git remote add origin https://${GH_TOKEN}@github.com/devosoft/cookiecutter-empirical-project.git > /dev/null 2>&1
-- git fetch origin cut-cookie
-- git checkout cut-cookie
+- git checkout -b cut-cookie
 - git add .
 - git commit --message "Travis build ${TRAVIS_BUILD_NUMBER}"
-- test ${TRAVIS_BRANCH} = "master" && git push --quiet origin cut-cookie
+- test ${TRAVIS_BRANCH} = "master" && git push --force --quiet origin cut-cookie
 
 env:
   global:
