@@ -10,7 +10,7 @@ python:
 
 install:
 - git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && git pull && ./emsdk install latest && ./emsdk activate latest && . ./emsdk_env.sh
-- pip3 install cookiecutter
+- pip install cookiecutter
 
 script:
 - make test
