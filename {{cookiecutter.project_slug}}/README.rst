@@ -15,6 +15,8 @@
 
 {{ cookiecutter.project_short_description }}
 
+Check out the live in-browser web app at `https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}`_.
+
 {% if is_open_source %}
 * Free software: {{ cookiecutter.open_source_license }}
 * Documentation: https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io.
@@ -30,5 +32,7 @@ Credits
 
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
+
+.. _`https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}`: https://{{ cookiecutter.github_username }}.github.io/{{ cookiecutter.project_slug }}
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`devosoft/cookiecutter-empirical-project`: https://github.com/devosoft/empirical-project
