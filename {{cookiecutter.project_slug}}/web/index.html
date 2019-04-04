@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+{% if cookiecutter.landing_page == 'Yes' -%}
+<!-- uncomment this meta tag to auto redirect from the landing page -->
+<!-- <meta http-equiv="refresh" content="0; URL='web/{{ cookiecutter.project_slug }}'" /> -->
+{% else -%}
+<!-- remove this meta tag to disable auto redirect from the landing page -->
+<meta http-equiv="refresh" content="0; URL='web/{{ cookiecutter.project_slug }}'" />
+{% endif %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<meta charset="utf-8">
+<title>Landing Page for {{ cookiecutter.project_name }}</title>
+</head>
+<body>
+
+<div class="jumbotron" style="padding-top: 2rem; padding-bottom: 1rem">
+<h1 class="display-4">Landing Page for {{ cookiecutter.project_name }}</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+     <div class="col">
+       <div class="card">
+         <div class="card-body">
+           {{ cookiecutter.project_short_description }}
+         </div>
+       </div>
+       <div class="card">
+         <div class="card-body">
+           <a href="web/{{ cookiecutter.project_slug }}" role="button" class="btn btn-secondary btn-lg btn-block">go!</a>
+           <a href="https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}" role="button" class="btn btn-secondary btn-lg btn-block">source</a>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+</body>
+</html>
