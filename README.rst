@@ -35,7 +35,7 @@ Then:
 
 * Create a repo and put it there.
 * Add the repo to your Travis-CI_ account.
-* To enable automatic GitHub pages deployment, `securely store a secret GithHub access token to the Travis-CI environment variable GH_TOKEN`_ and activate Github Pages in your repo settings.
+* To enable automatic GitHub pages deployment, `securely store`_ a secret GithHub access token to the Travis-CI environment variable GH_TOKEN`_ and activate Github Pages in your repo settings.
 * Add the repo to your ReadTheDocs_ account + turn on the ReadTheDocs service hook.
 
 .. _`Empirical C++ Library`: https://github.com/devosoft/Empirical
@@ -46,4 +46,4 @@ Then:
 .. _Sphinx: http://sphinx-doc.org/
 .. _ReadTheDocs: https://readthedocs.io/
 .. _Bumpversion: https://github.com/peritus/bumpversion
-.. _`securely store a secret GithHub access token to the Travis-CI environment variable GH_TOKEN.`: https://gist.github.com/willprice/e07efd73fb7f13f917ea
+.. _`securely store`: https://gist.github.com/willprice/e07efd73fb7f13f917ea
