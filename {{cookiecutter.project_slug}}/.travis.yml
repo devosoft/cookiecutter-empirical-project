@@ -1,13 +1,19 @@
-dist: trusty
+dist: xenial
 sudo: required
 
 language: node_js
 node_js:
 - "8.11.3"
 
+before_install:
+- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+- sudo apt-get update -qq
+
 install:
+- sudo apt-get install -qq g++-8
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
 - git clone https://github.com/Empirical ../Empirical
-- git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && git pull && ./emsdk install latest && ./emsdk activate latest && . ./emsdk_env.sh
+- git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && git pull && ./emsdk install latest && ./emsdk activate latest && . ./emsdk_env.sh && cd ..
 
 script:
 - make test
