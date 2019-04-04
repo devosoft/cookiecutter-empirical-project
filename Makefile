@@ -4,7 +4,7 @@ Empirical:
 	git clone https://github.com/devosoft/Empirical.git
 
 test: Empirical
-	echo "\n\n\n\n\n\n\n\n1\n\n" | cookiecutter . \
+	echo "\n\n\n\n\n\n\n\n1\n\n\n" | cookiecutter . \
 	&& cd cut-empirical-project && make test
 
 clean:
