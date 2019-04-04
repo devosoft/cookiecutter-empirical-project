@@ -32,7 +32,7 @@ after_success:
 - git checkout cut-cookie
 - git add .
 - git commit --message "Travis build ${TRAVIS_BUILD_NUMBER}"
-- git push --quiet origin cut-cookie
+- test ${TRAVIS_BRANCH} = "master" && git push --quiet origin cut-cookie
 
 env:
   global:
