@@ -5,8 +5,11 @@ language: node_js
 node_js:
 - "8.11.3"
 
-python:
-- '3.6'
+python: 
+  - "2.7"
+  - "3.4" 
+virtualenv:
+  system_site_packages: true
 
 install:
 - git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && git pull && ./emsdk install latest && ./emsdk activate latest && . ./emsdk_env.sh
