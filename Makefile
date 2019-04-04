@@ -8,4 +8,4 @@ test: Empirical
 	&& cd cut-empirical-project && make test
 
 clean:
-	rm -rf Empirical cut-emprical-project emsdk
+	rm -rf Empirical cut-empirical-project emsdk
