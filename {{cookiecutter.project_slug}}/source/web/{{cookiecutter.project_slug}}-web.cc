@@ -1,6 +1,6 @@
-//  This file is part of Project Name
-//  Copyright (C) Michigan State University, 2017.
-//  Released under the MIT Software license; see doc/LICENSE
+//  This file is part of {{cookiecutter.project_name}}
+//  Copyright (C) {{ cookiecutter.full_name }}, {% now 'local', '%Y' %}.
+//  Released under {{ cookiecutter.open_source_license }}; see LICENSE
 
 #include <iostream>
 
