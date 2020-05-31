@@ -35,11 +35,11 @@ Get set up a repo on Github & make some git goodness happen::
 
     cd your-cut-project
     git init
-	git add .
-	git submodule add https://github.com/philsquared/Catch.git third-party/Catch
-	git commit -m "Initial commit"
-	git submodule init
-	git submodule update
+    git add .
+    git submodule add https://github.com/philsquared/Catch.git third-party/Catch
+    git commit -m "Initial commit"
+    git submodule init
+    git submodule update
     git remote add origin git@github.com:yourusername/your-cut-project.git
     git push origin master
 
