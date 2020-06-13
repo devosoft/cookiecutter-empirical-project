@@ -4,7 +4,7 @@
 	cd .. && git clone https://github.com/devosoft/Empirical.git
 
 ../cut-cookie:
-	echo "\n\n\Cut Cookie\n\n\n\n\n1\n\n\n1\n" | cookiecutter . -o .. \
+	echo "\n\n\nCut Cookie\n\n\n\n\n1\n\n\n1\n" | cookiecutter . -o .. \
 	&& cd ../cut-cookie \
 	&& git init \
 	&& git add . \
