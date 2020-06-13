@@ -1,18 +1,20 @@
 .PHONY: test clean
 
-Empirical:
-	git clone https://github.com/devosoft/Empirical.git
+../Empirical:
+	git clone https://github.com/devosoft/Empirical.git ../Empirical
 
-test: Empirical
-	echo "\n\n\nCookiecutter Empirical Project\n\n\n\n\n1\n\ncut-cookie\n1\n" | cookiecutter . \
-	&& cd cookiecutter-empirical-project \
+../cut-cookie:
+	echo "\n\n\Cut Cookie\n\n\n\n\n1\n\n\n1\n" | cookiecutter . -o .. \
+	&& cd ../cut-cookie \
 	&& git init \
 	&& git add . \
 	&& git submodule add https://github.com/philsquared/Catch.git third-party/Catch \
 	&& git commit -m "Initial commit" \
 	&& git submodule init \
 	&& git submodule  update \
-	&& make test
+
+test: ../Empirical ../cut-cookie
+	cd ../cut-cookie && make test
 
 clean:
-	rm -rf Empirical cookiecutter-empirical-project emsdk
+	rm -rf ../cut-cookie
