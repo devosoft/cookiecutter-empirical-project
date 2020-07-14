@@ -37,6 +37,7 @@ Get set up a repo on Github & make some git goodness happen::
     git init
     git add .
     git submodule add https://github.com/philsquared/Catch.git third-party/Catch
+    git submodule add -b master https://github.com/devosoft/Empirical.git third-party/Empirical
     git commit -m "Initial commit"
     git submodule init
     git submodule update
