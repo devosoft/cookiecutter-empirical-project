@@ -42,6 +42,10 @@ git remote add origin git@github.com:yourusername/your-cut-project.git
 git push origin master
 ```
 
+:bangbang:
+Want to track a particular Empirical commit instead of the master branch?
+Just omit `-b master` above.
+
 Take it for a spin!
 ```bash
 make test
