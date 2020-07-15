@@ -53,6 +53,19 @@ make test
 
 Then:
 
-* Add the repo to your Travis-CI_ account.
-* To enable automatic GitHub pages deployment, [securely store](https://gist.github.com/willprice/e07efd73fb7f13f917ea) a secret GithHub access token to the Travis-CI environment variable `GH_TOKEN` and activate Github Pages in your repo settings.
+* If you haven't already, link your GitHub account to [Travis CI](https://travis-ci.org/signup).
+* The repo might start building on Travis automatically, but if it doesn't [add it manually](https://travis-ci.org/account/repositories).
+* To enable automatic GitHub pages deployment, store a secret GithHub access token to the Travis-CI environment variable `GH_TOKEN`.
+  1. [Generate a new GitHub personal access token.](https://github.com/settings/tokens/new)
+    * [x] Select the `repo` (`Full control of private repositories`) scope.
+    * :bangbang: Be sure to keep a copy on hand for the next step!
+  2. `echo GH_TOKEN=my_github_token | travis encrypt --no-interactive --com --add`
+    * You'll need [Travis-CI's Ruby gem](https://github.com/travis-ci/travis.rb) (`sudo gem install travis`).
+  3. `git add .travis.yml -m "Add GH_TOKEN var to Travis env" && git push origin master`
+  4. Once Travis builds, your site should deploy to `https://yourusername.github.io/your-cut-project`.
+    * :information_source: Travis will push a `gh-pages` branch to your repo.
+    No touchy.
+    Just leave it be!
+  5. (If your page doesn't auto-deploy, you might have to manually activate Github Pages in your repo settings.)
+* Canonical reference RE: storing a personal access token on Travis [here](https://gist.github.com/willprice/e07efd73fb7f13f917ea).
 * Add the repo to your [ReadTheDocs](https://readthedocs.io/) account + turn on the ReadTheDocs service hook.
