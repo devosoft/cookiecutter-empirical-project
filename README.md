@@ -53,8 +53,8 @@ make test
 
 Then:
 
-* If you haven't already, link your GitHub account to [Travis CI](https://travis-ci.org/signup).
-* The repo might start building on Travis automatically, but if it doesn't [add it manually](https://travis-ci.org/account/repositories).
+* If you haven't already, link your GitHub account to [Travis CI](https://travis-ci.com/signup).
+* The repo might start building on Travis automatically, but if it doesn't [add it manually](https://travis-ci.com/account/repositories).
 * To enable automatic GitHub pages deployment, store a secret GithHub access token to the Travis-CI environment variable `GH_TOKEN`.
   1. [Generate a new GitHub personal access token.](https://github.com/settings/tokens/new)
     * [x] Select the `repo` (`Full control of private repositories`) scope.
