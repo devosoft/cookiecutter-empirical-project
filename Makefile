@@ -1,7 +1,9 @@
 .PHONY: test clean
 
+COOKIECUTTER_EMP_DIR?=third-party/Empirical
+
 ../cut-cookie:
-	echo "\n\n\nCut Cookie\n\n\n\n\n1\n\n\n1\n" | cookiecutter . -o .. \
+	echo "\n\n\nCut Cookie\n\n\n\n\n1\n$(COOKIECUTTER_EMP_DIR)\n\n1\n" | cookiecutter . -o .. \
 	&& cd ../cut-cookie \
 	&& git init \
 	&& git add . \
