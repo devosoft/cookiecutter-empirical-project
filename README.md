@@ -28,7 +28,8 @@ Generate an Empirical project:
 cookiecutter https://github.com/devosoft/cookiecutter-empirical-project.git
 ```
 
-hooks/post_gen_project.sh will run to initialize submodules. If you want your repo to automatically push to github, set up the remote repo first.
+`hooks/post_gen_project.sh` will run to initialize submodules. 
+If you want your repo to automatically push to github, set up the remote repo first.
 
 :bangbang:
 Want to track a particular Empirical commit instead of the master branch?
