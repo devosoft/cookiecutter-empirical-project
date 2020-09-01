@@ -17,7 +17,8 @@ cd third-party/emsdk/
 ./emsdk activate 1.38.48
 
 
-#git commit -m "Initial commit"
+git commit -m "Initial commit"
 
-#git remote add origin https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.git
-#git push origin master || echo 'speculative initial push failed, try setting up repo on github first.'
+# Attempt to push local repo to remote repository on github
+git remote add origin https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.git
+git push origin master || echo 'speculative initial push failed, try setting up repo on github first.'
