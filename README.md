@@ -28,19 +28,8 @@ Generate an Empirical project:
 cookiecutter https://github.com/devosoft/cookiecutter-empirical-project.git
 ```
 
-Get set up a repo on Github & make some git goodness happen:
-```bash
-cd your-cut-project
-git init
-git add .
-git submodule add https://github.com/philsquared/Catch.git third-party/Catch
-git submodule add -b master https://github.com/devosoft/Empirical.git third-party/Empirical
-git commit -m "Initial commit"
-git submodule init
-git submodule update
-git remote add origin git@github.com:yourusername/your-cut-project.git
-git push origin master
-```
+`hooks/post_gen_project.sh` will run to initialize submodules. 
+If you want your repo to automatically push to github, set up the remote repo first.
 
 :bangbang:
 Want to track a particular Empirical commit instead of the master branch?
