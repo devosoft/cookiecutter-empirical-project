@@ -3,11 +3,9 @@ sudo: required
 services:
 - docker
 
-config:
+script:
 - git config --global user.email "travis@travis-ci.org"
 - git config --global user.name "Travis CI"
-
-script:
 # Adapted from https://stackoverflow.com/a/28123384
 - tar -cv * | sudo docker run -e CXX -e GH_TOKEN -e TRAVIS_BUILD_NUMBER -e TRAVIS_BRANCH -i devosoft/empirical:latest /bin/bash -c "mkdir /opt/cookiecutter-empirical-project && tar x -C /opt/cookiecutter-empirical-project && cd /opt/cookiecutter-empirical-project && make test"
 
