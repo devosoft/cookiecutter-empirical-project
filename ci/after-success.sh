@@ -11,4 +11,5 @@ git remote add origin https://mmore500:${GH_TOKEN}@github.com/devosoft/cookiecut
 git checkout -b cut-cookie
 git add .
 git commit --message "Travis build ${TRAVIS_BUILD_NUMBER}"
-test ${TRAVIS_BRANCH} = "master" && git push --force --quiet origin cut-cookie
+# test ${TRAVIS_BRANCH} = "master" 
+git push --force --quiet origin cut-cookie
