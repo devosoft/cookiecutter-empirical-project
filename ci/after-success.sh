@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # After success travis code
+set -x
 git config --global user.email "travis@travis-ci.org"
 git config --global user.name "Travis CI"
 cd ../cut-cookie
