@@ -6,5 +6,5 @@ services:
 
 script:
 # Adapted from https://stackoverflow.com/a/28123384
-- tar -cv * | sudo docker run -e CXX -e GH_TOKEN -e TRAVIS_BUILD_NUMBER -e TRAVIS_BRANCH -i devosoft/empirical:latest /bin/bash -c "set -x && mkdir /opt/{{ cookiecutter.project_slug }} && tar x -C /opt/{{ cookiecutter.project_slug }} && cd /opt/{{ cookiecutter.project_slug }} && git config --global user.email 'travis@travis-ci.org' && git config --global user.name 'Travis CI' && make test && /opt/{{ cookiecutter.project_slug }}/ci/after_success.sh"
+- tar -cv * | sudo docker run -e CXX -e GH_TOKEN -e TRAVIS_BUILD_NUMBER -e TRAVIS_BRANCH -i devosoft/empirical:latest /bin/bash -c "set -x && mkdir /opt/{{ cookiecutter.project_slug }} && tar -x -C /opt/{{ cookiecutter.project_slug }} && cd /opt/{{ cookiecutter.project_slug }} && git config --global user.email 'travis@travis-ci.org' && git config --global user.name 'Travis CI' && make test && /opt/{{ cookiecutter.project_slug }}/ci/after_success.sh"
 
