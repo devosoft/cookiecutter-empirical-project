@@ -8,7 +8,7 @@ script:
 # RE: puppeteer in Docker,
 # see https://github.com/puppeteer/puppeteer/issues/3451#issuecomment-523961368
 # and https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
-  - tar -cv * | sudo docker run --cap-add=SYS_ADMIN -e CXX -e GH_TOKEN -e TRAVIS_BUILD_NUMBER -e TRAVIS_BRANCH -i devosoft/empirical:latest /bin/bash -c "set -x && mkdir /opt/cookiecutter-empirical-project && tar -x -C /opt/cookiecutter-empirical-project && cd /opt/cookiecutter-empirical-project && pwd && ls && ls ci && git config --global user.email 'travis@travis-ci.org' && git config --global user.name 'Travis CI' && make test && /opt/cookiecutter-empirical-project/ci/after-success.sh"
+  - tar -p -cv * | sudo docker run --cap-add=SYS_ADMIN -e CXX -e GH_TOKEN -e TRAVIS_BUILD_NUMBER -e TRAVIS_BRANCH -i devosoft/empirical:latest /bin/bash -c "set -x && mkdir /opt/cookiecutter-empirical-project && tar -px -C /opt/cookiecutter-empirical-project && cd /opt/cookiecutter-empirical-project && pwd && ls && ls ci && git config --global user.email 'travis@travis-ci.org' && git config --global user.name 'Travis CI' && make test && /opt/cookiecutter-empirical-project/ci/after-success.sh"
 
 env:
   global:
