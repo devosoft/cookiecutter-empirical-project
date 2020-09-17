@@ -1,5 +1,7 @@
 FROM devosoft/empirical
 
+USER root
+
 COPY . /opt/{{cookiecutter.project_slug}}
 
 # make sure unprivileged user has access to new files in opt
@@ -11,3 +13,5 @@ RUN \
   chmod --recursive g+rwx /opt/{{cookiecutter.project_slug}} \
     && \
   echo "user granted permissions to /opt/{{cookiecutter.project_slug}}"
+  
+USER user
