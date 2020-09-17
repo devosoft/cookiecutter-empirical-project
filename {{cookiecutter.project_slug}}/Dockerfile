@@ -6,8 +6,8 @@ COPY . /opt/{{cookiecutter.project_slug}}
 # adapted from https://stackoverflow.com/a/27703359
 # and https://superuser.com/a/235398
 RUN \
-  chgrp --recursive user /opt \
+  chgrp --recursive user /opt/{{cookiecutter.project_slug}} \
     && \
-  chmod --recursive g+rwx /opt \
+  chmod --recursive g+rwx /opt/{{cookiecutter.project_slug}} \
     && \
-  echo "user added and granted permissions to /opt"
+  echo "user granted permissions to /opt/{{cookiecutter.project_slug}}"
