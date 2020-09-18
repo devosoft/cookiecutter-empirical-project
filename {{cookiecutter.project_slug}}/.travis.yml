@@ -10,4 +10,4 @@ install:
 
 script:
 # Adapted from https://stackoverflow.com/a/28123384
-- sudo docker run -e CXX -e GH_TOKEN -e TRAVIS_BUILD_NUMBER -e TRAVIS_BRANCH -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x &&  cd /opt/{{ cookiecutter.project_slug }} && chmod +x /ci/install_emsdk.sh && /ci/install_emsdk.sh && make test && chmod +x /ci/after-success.sh && /ci/after-success.sh"
+- sudo docker run -e CXX -e GH_TOKEN -e TRAVIS_BUILD_NUMBER -e TRAVIS_BRANCH -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x &&  cd /opt/{{ cookiecutter.project_slug }} && chmod +x /opt/{{ cookiecutter.project_slug }}/ci/install_emsdk.sh && /opt/{{ cookiecutter.project_slug }}/ci/install_emsdk.sh && make test && chmod +x /opt/{{ cookiecutter.project_slug }}/ci/after-success.sh && /opt/{{ cookiecutter.project_slug }}/ci/after-success.sh"
