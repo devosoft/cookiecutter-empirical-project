@@ -59,6 +59,11 @@ tests:
 	cd tests && make opt
 	cd tests && make fulldebug
 
+install-test-dependencies: install-pip-deps install-npm-deps
+	cd third-party
+	bash ./install_emsdk.sh
+	git submodule update --init	
+
 # Debugging information
 print-%: ; @echo '$(subst ','\'',$*=$($*))'
 
