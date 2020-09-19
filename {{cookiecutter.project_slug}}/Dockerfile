@@ -15,3 +15,10 @@ RUN \
   echo "user granted permissions to /opt/{{cookiecutter.project_slug}}"
   
 USER user
+
+RUN \
+  cd /opt/{{cookiecutter.project_slug}} \
+    && \
+  make install-test-dependencies \
+    && \
+  echo "installed test dependencies"
