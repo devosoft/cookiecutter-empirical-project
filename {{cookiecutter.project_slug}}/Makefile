@@ -60,7 +60,7 @@ tests:
 	cd tests && make fulldebug
 
 install-test-dependencies: 
-	cd third-party/
+	cd ./third-party/
 	ls
 	bash ./install_emsdk.sh
 	git submodule update --init	
