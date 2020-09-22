@@ -9,4 +9,4 @@ git remote add origin https://${GH_TOKEN}@github.com/{{ cookiecutter.github_user
 git checkout -b gh-pages
 git add .
 git commit --message "Travis build ${TRAVIS_BUILD_NUMBER}"
-test ${TRAVIS_BRANCH} = "{{ cookiecutter.deployment_branch }}" && git push --force --quiet origin gh-pages
+test ${TRAVIS_BRANCH} = "{{ cookiecutter.deployment_branch }}" && git push --force --quiet origin gh-pages || echo "didn't push, not on deployment branch"
