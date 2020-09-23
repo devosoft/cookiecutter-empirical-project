@@ -1,39 +1,14 @@
 dist: xenial
 sudo: required
-
-language: node_js
-node_js:
-- "8.11.3"
-
-python:
-- "3.6"
-
-before_install:
-- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-- sudo apt-get update -qq
-
-install:
-- sudo apt-get install -qq g++-8
-- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
-- pip install --user cookiecutter
-- git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && git pull && ./emsdk install latest && ./emsdk activate latest && . ./emsdk_env.sh && cd ..
-- git submodule update
+services:
+- docker
 
 script:
-- make test
-
-after_success:
-- git config --global user.email "travis@travis-ci.org"
-- git config --global user.name "Travis CI"
-- cd ../cut-cookie
-- printf "\n\nenv:\n  global:\n    secure:%suTo92v1HA9mhToHw8b9BeaJn3SQhLCuMZDbuzA7DvuP2mEsPx9T2SzRWLN38hpKlZ7Yf0de5/o8o+tGMf2917XUeSuba4y97H7lB7SmpvBAukYff/0aTTdEBXIfgM+4XOFWCpsgKP+N+91WeSXb4zccx8VpzNfb6H9FJ3R2P0TFQkuz6CLcy2IHZCRw9r/+61/CuIpaek9PyAoyv0gzlmoMbbBvHvUoKLI/uLgpxd7qTLZOhFv0NvxtPXWZnhAhLGNSNUQ5hadiHfor86WNCOJNuB0y4APSGGWZ0SRZy28xmw+eO2WLWUR4E8pLicwlFCTZIfYXpy1LyMWRh0ZcLQjei9VevCsHuSQ0Kgyb6BV2MOeUbcCGy/xX6XwnmWOJtdK0uTkgFJjrFnsj/VhEauxtfT2P9VbwxAAi3IK/mz/dtY7f0jymGNUoALQlm6hwVSv4o/bBJXsBZUNX6+ErLmqWmsfjUco1zlVdewjsTF4wPv72P7+UfxBNjWLaawk+dU5Z1cf84FBiE4N8ohD1bGITVu1boj0bfdlAMYMu+1Q9r7hXz48MMz0/90eqWB/yDlXrxA1kLvhmMhRm3xK+Gxqeu0W609mDNDh+41OCRjmuolzQKAAGXmDwQi1RJxC/R1XsN96+00imPHz7W28cKaWYc/sLXPOPdbD2uv1wsgdA=" " " >> .travis.yml
-- cat .travis.yml #for debugging
-- make clean
-- git remote add origin https://mmore500:${GH_TOKEN}@github.com/devosoft/cookiecutter-empirical-project.git > /dev/null 2>&1
-- git checkout -b cut-cookie
-- git add .
-- git commit --message "Travis build ${TRAVIS_BUILD_NUMBER}"
-- test ${TRAVIS_BRANCH} = "master" && git push --force --quiet origin cut-cookie
+# Adapted from https://stackoverflow.com/a/28123384
+# RE: puppeteer in Docker,
+# see https://github.com/puppeteer/puppeteer/issues/3451#issuecomment-523961368
+# and https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
+  - tar -p -cv * | sudo docker run --cap-add=SYS_ADMIN -e CXX -e GH_TOKEN -e TRAVIS_BUILD_NUMBER -e TRAVIS_BRANCH -i devosoft/empirical:latest /bin/bash -c "set -x && mkdir /opt/work && tar -px -C /opt/work && cd /opt/work && git config --global user.email 'travis@travis-ci.org' && git config --global user.name 'Travis CI' && make test && chmod +x /opt/work/ci/after-success.sh && /opt/work/ci/after-success.sh"
 
 env:
   global:
