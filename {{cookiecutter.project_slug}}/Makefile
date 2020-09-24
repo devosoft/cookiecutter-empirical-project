@@ -40,10 +40,25 @@ $(PROJECT):	source/native/$(PROJECT).cc
 $(PROJECT).js: source/web/$(PROJECT)-web.cc
 	cd third-party/emsdk && . ./emsdk_env.sh && cd - && $(CXX_web) $(CFLAGS_web) source/web/$(PROJECT)-web.cc -o web/$(PROJECT).js
 
-.PHONY: clean test serve
+.PHONY: clean test serve documentation-coverage documentation-coverage-badge.json version-badge.json doto-badge.json
+
+docs:
+	cd docs && make html
 
 serve:
 	python3 -m http.server
+
+documentation-coverage:
+	cd docs && make coverage
+
+documentation-coverage-badge.json: documentation-coverage
+	python3 ci/parse_documentation_coverage.py docs/_build/doc-coverage.json > web/documentation-coverage-badge.json
+
+version-badge.json:
+	python3 ci/parse_version.py .bumpversion.cfg > web/version-badge.json
+
+doto-badge.json:
+	python3 ci/parse_dotos.py $$(./ci/grep_dotos.sh) > web/doto-badge.json
 
 clean:
 	rm -f $(PROJECT) web/$(PROJECT).js web/*.js.map web/*.js.map *~ source/*.o web/*.wasm web/*.wast
