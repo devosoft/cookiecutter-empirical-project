@@ -1,11 +1,51 @@
+# only build pull requests and merges to master or dev
+# adapted from https://stackoverflow.com/a/31882307
+if: (type = push AND branch IN (master, dev)) OR (type = pull_request AND NOT branch =~ /no-ci/)
 dist: xenial
 sudo: required
 
 services:
 - docker
 
+jobs:
+  include:
+  - stage: Tests
+
+    name: Unit Tests (debug mode)
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script:
+    - docker run --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make"
+
+  - name: Unit Tests (full debug mode)
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script:
+    - docker run --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make fulldebug"
+
+  - name: Unit Tests (opt mode)
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script:
+    - docker run --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make opt"
+
+  - name: Source
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script: docker run mmore500/conduit /bin/bash -c "cd /opt/conduit && make test"
+
+  - name: Docs
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script: docker run mmore500/conduit /bin/bash -c "cd /opt/conduit && make docs"
+
 install:
-- docker build -t {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} .
+- docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
 - docker ps -a
 
 script:
