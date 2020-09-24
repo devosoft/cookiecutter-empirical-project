@@ -74,9 +74,9 @@ tests:
 	cd tests && make opt
 	cd tests && make fulldebug
 
-install-test-dependencies: 
+install-test-dependencies:
 	cd third-party && bash ./install_emsdk.sh
-	git submodule update --init	
+	git submodule update --init
 
 # Debugging information
 print-%: ; @echo '$(subst ','\'',$*=$($*))'
