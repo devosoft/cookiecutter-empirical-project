@@ -37,8 +37,31 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
     'sphinx_rtd_theme',
+    'breathe',
+    'exhale',
     'myst_parser',
-    ]
+]
+
+# Setup the breathe extension
+breathe_projects = {
+    "{{ cookiecutter.full_name }}": "./doxyoutput/xml"
+}
+breathe_default_project = "{{ cookiecutter.full_name }}"
+
+# Setup the exhale extension
+exhale_args = {
+    # These arguments are required
+    "containmentFolder":     "./api",
+    "rootFileName":          "library_root.rst",
+    "rootFileTitle":         "Library API",
+    "doxygenStripFromPath":  "..",
+    # Suggested optional arguments
+    "createTreeView":        True,
+    # TIP: if using the sphinx-bootstrap-theme, you need
+    # "treeViewIsBootstrap": True,
+    "exhaleExecutesDoxygen": True,
+    "exhaleDoxygenStdin":    "INPUT = ../include"
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
