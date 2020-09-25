@@ -10,12 +10,12 @@ FLAGS = -std=c++17 -pthread -Wall -Wno-unused-function -Wno-unused-private-field
 
 default: test
 
-test-%: %.cc
+test-%: %.cc ../third-party/Catch/single_include/catch2/catch.hpp
 	$(CXX) $(FLAGS) $< -o $@.out
 	# execute test
 	./$@.out
 
-cov-%: %.cc $(TO_ROOT)/third-party/Catch/single_include/catch2/catch.hpp
+cov-%: %.cc ../third-party/Catch/single_include/catch2/catch.hpp
 	$(CXX) $(FLAGS) $< -o $@.out
 	#echo "running $@.out"
 	# execute test
@@ -44,6 +44,10 @@ cranky: $(addprefix test-, $(TEST_NAMES))
 
 ../coverage_include:
 	./convert_for_tests.sh
+
+../third-party/Catch/single_include/catch2/catch.hpp:
+	git submodule init
+	git submodule update
 
 coverage: FLAGS := -std=c++17 -pthread -g -Wall -Wno-unused-function -I$(TO_ROOT)/coverage_source/ -I$(TO_ROOT) -I$(TO_ROOT)/third-party/cereal/include/ -DEMP_TRACK_MEM -Wnon-virtual-dtor -Wcast-align -Woverloaded-virtual -ftemplate-backtrace-limit=0 -fprofile-instr-generate -fcoverage-mapping -fno-inline -fno-elide-constructors -O0
 coverage: ../coverage_include $(addprefix cov-, $(TEST_NAMES))
