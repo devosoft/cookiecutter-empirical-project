@@ -39,8 +39,6 @@ $(PROJECT):	source/native/$(PROJECT).cc
 $(PROJECT).js: source/web/$(PROJECT)-web.cc
 	cd third-party/emsdk && . ./emsdk_env.sh && cd - && $(CXX_web) $(CFLAGS_web) source/web/$(PROJECT)-web.cc -o web/$(PROJECT).js
 
-.PHONY: clean test serve documentation-coverage documentation-coverage-badge.json version-badge.json doto-badge.json
-
 docs:
 	cd docs && make html
 
@@ -80,4 +78,4 @@ install-test-dependencies:
 # Debugging information
 print-%: ; @echo '$(subst ','\'',$*=$($*))'
 
-.PHONY: tests
+.PHONY: tests clean test serve debug native web tests install-test-dependencies documentation-coverage documentation-coverage-badge.json version-badge.json doto-badge.json
