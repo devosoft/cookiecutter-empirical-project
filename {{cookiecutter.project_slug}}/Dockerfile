@@ -29,9 +29,13 @@ RUN \
     && \
   apt-get install -y cmake build-essential python-virtualenv python-pip nodejs tar gzip libclang-7-dev llvm-7 clang-7 libstdc++-7-dev gdb \
     && \
-  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-7 1000 \
+  update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-7 90 \
     && \
-  update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-7 1000 \
+  update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-7 90 \
+    && \
+  update-alternatives --install /usr/bin/llvm-profdata llvm-profdata /usr/bin/llvm-profdata-7 90 \
+    && \
+  update-alternatives --install /usr/bin/llvm-cov llvm-cov /usr/bin/llvm-cov-7 90 \
     && \
   echo "installed force cover build dependencies"
 
