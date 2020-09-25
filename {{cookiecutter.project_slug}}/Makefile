@@ -3,7 +3,7 @@ PROJECT := {{ cookiecutter.project_slug }}
 EMP_DIR := {{ cookiecutter.emp_dir }}
 
 # Flags to use regardless of compiler
-CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/
+CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/ -Iinclude/
 
 # Native compiler information
 CXX ?= g++
@@ -32,12 +32,12 @@ debug-web:	$(PROJECT).js
 
 web-debug:	debug-web
 
-$(PROJECT):	source/native/$(PROJECT).cc
-	$(CXX) $(CFLAGS_nat) source/native/$(PROJECT).cc -o $(PROJECT)
+$(PROJECT):	source/native.cc include/
+	$(CXX) $(CFLAGS_nat) source/native.cc -o $(PROJECT)
 	@echo To build the web version use: make web
 
-$(PROJECT).js: source/web/$(PROJECT)-web.cc
-	cd third-party/emsdk && . ./emsdk_env.sh && cd - && $(CXX_web) $(CFLAGS_web) source/web/$(PROJECT)-web.cc -o web/$(PROJECT).js
+$(PROJECT).js: source/web.cc include/
+	cd third-party/emsdk && . ./emsdk_env.sh && cd - && $(CXX_web) $(CFLAGS_web) source/web.cc -o web/$(PROJECT).js
 
 docs:
 	cd docs && make html
