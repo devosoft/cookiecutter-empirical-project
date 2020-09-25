@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# After success travis code 
+# After success travis code
 git config --global user.email 'travis@travis-ci.org'
 git config --global user.name 'Travis CI'
+make badges
 cd web
 git init
 git remote add origin https://${GH_TOKEN}@github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.git > /dev/null 2>&1
