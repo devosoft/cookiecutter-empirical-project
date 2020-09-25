@@ -2,7 +2,7 @@
 
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "example.h"
+#include "{{cookiecutter.project_slug}}/example.hpp"
 
 TEST_CASE("Test example")
 {

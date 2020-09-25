@@ -10,5 +10,6 @@
   "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
   "emp_dir": "third-party/Empirical/source",
   "deployment_branch": "master",
-  "landing_page": ["Yes", "No"]
+  "landing_page": ["Yes", "No"],
+  "docker_username": "{{ cookiecutter.github_username }}"
 }

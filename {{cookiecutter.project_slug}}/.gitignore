@@ -12,7 +12,7 @@
 *.swo
 *.wasm
 *.wast
-*-bak.cc
+*-bak.cpp
 *tmp.*
 
 .DS_Store

@@ -7,6 +7,7 @@ git init
 git add .
 git submodule add https://github.com/philsquared/Catch.git third-party/Catch
 git submodule add -b master https://github.com/devosoft/Empirical.git third-party/Empirical
+git submodule add https://github.com/emilydolson/force-cover.git third-party/force-cover
 git submodule init
 git submodule update --recursive --init
 

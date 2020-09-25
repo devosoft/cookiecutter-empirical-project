@@ -3,6 +3,7 @@
 [![Travis CI badge](https://travis-ci.org/devosoft/cookiecutter-empirical-project.svg?branch=master)](https://travis-ci.org/devosoft/cookiecutter-empirical-project)
 
 [Cookiecutter](https://github.com/audreyr/cookiecutter) template for an Empirical Project.
+Take a look at a live example of an instantiated template [here](https://github.com/devosoft/cookiecutter-empirical-project/tree/cut-cookie).
 
 * GitHub repo: https://github.com/devosoft/cookiecutter-empirical-project/
 * Free software: MIT LICENSE
@@ -28,7 +29,7 @@ Generate an Empirical project:
 cookiecutter https://github.com/devosoft/cookiecutter-empirical-project.git
 ```
 
-`hooks/post_gen_project.sh` will run to initialize submodules. 
+`hooks/post_gen_project.sh` will run to initialize submodules.
 If you want your repo to automatically push to github, set up the remote repo first.
 
 :bangbang:
