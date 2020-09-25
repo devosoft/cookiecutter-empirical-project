@@ -13,7 +13,7 @@ RUN \
   chmod --recursive g+rwx /opt/{{cookiecutter.project_slug}} \
     && \
   echo "user granted permissions to /opt/{{cookiecutter.project_slug}}"
-  
+
 USER user
 
 RUN \
