@@ -94,7 +94,7 @@ jobs:
 
   - stage: Deploy
     name: GitHub Pages
-    if: (type = push AND branch IN (master))
+    if: (type = push AND branch IN (master, cut-cookie))
     install:
     - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
     - docker ps -a
