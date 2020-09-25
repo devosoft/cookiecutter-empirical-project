@@ -10,8 +10,9 @@ RUN \
     python3-virtualenv \
     python-pip \
     python3-pip \
+    doxygen \
     && \
-  echo "installed python dependencies"
+  echo "installed docs dependencies"
 
 RUN \
   pip3 install -r /opt/{{cookiecutter.project_slug}}/docs/requirements.txt \
