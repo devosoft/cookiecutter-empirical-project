@@ -11,6 +11,7 @@ COOKIECUTTER_EMP_DIR ?= third-party/Empirical/source
 	&& git init \
 	&& git add . \
 	&& git commit -m "Initial commit" \
+	&& echo "initial push to cut-cookie worked!"
 
 test: ../cut-cookie/cookiecutter-empirical-project
 	cd ../cut-cookie/cookiecutter-empirical-project && make test
