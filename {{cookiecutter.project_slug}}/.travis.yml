@@ -11,38 +11,74 @@ jobs:
   include:
   - stage: Tests
 
-    name: Unit Tests (debug mode)
+    name: Unit Tests (clang, debug mode)
+    env: CXX=clang++
     install:
     - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
     - docker ps -a
     script:
-    - sudo docker run --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make"
+    - sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make"
 
-  - name: Unit Tests (full debug mode)
+    name: Unit Tests (gcc, debug mode)
+    env: CXX=g++
     install:
     - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
     - docker ps -a
     script:
-    - sudo docker run --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make fulldebug"
+    - sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make"
 
-  - name: Unit Tests (opt mode)
+  - name: Unit Tests (clang, full debug mode)
+    env: CXX=clang++
     install:
     - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
     - docker ps -a
     script:
-    - sudo docker run --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make opt"
+    - sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make fulldebug"
+
+  - name: Unit Tests (gcc, full debug mode)
+    env: CXX=g++
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script:
+    - sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make fulldebug"
+
+  - name: Unit Tests (clang, opt mode)
+    env: CXX=clang++
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script:
+    - sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make opt"
+
+  - name: Unit Tests (gcc, opt mode)
+    env: CXX=g++
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script:
+    - sudo docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make opt"
 
   - name: Coverage
+    env: CXX=clang++
     install:
     - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
     - docker ps -a
-    script: sudo docker run {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make coverage && bash <(curl -s https://codecov.io/bash)"
+    script: sudo docker run -e CXX {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make coverage && bash <(curl -s https://codecov.io/bash)"
 
-  - name: Source
+  - name: Source (clang)
+    env: CXX=clang++
     install:
     - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
     - docker ps -a
-    script: sudo docker run --cap-add=SYS_ADMIN {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make test"
+    script: sudo docker run -e CXX --cap-add=SYS_ADMIN {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make test"
+
+  - name: Source (gcc)
+    env: CXX=g++
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script: sudo docker run -e CXX --cap-add=SYS_ADMIN {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make test"
 
   - name: Docs
     install:
