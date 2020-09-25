@@ -7,8 +7,8 @@
 [![Documentation Status](https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest)](https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?badge=latest)
 [![documentation coverage](https://img.shields.io/endpoint?url=https%3A%2F%2F{{ cookiecutter.github_username }}.github.io%2F{{ cookiecutter.project_slug }}%2Fdocumentation-coverage-badge.json)](https://{{ cookiecutter.project_slug }}.readthedocs.io/en/latest/)
 [![code coverage status](https://codecov.io/gh/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/branch/master/graph/badge.svg)](https://codecov.io/gh/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }})
-[![dotos](https://img.shields.io/endpoint?url=https%3A%2F%2F{{ cookiecutter.github_username }}.com%2Fconduit%2Fdoto-badge.json)](https://github.com/{{ cookiecutter.github_username }}/conduit/search?q=todo+OR+fixme&type=)
-[![GitHub stars](https://img.shields.io/github/stars/{{ cookiecutter.github_username }}/conduit.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/{{ cookiecutter.github_username }}/conduit)
+[![dotos](https://img.shields.io/endpoint?url=https%3A%2F%2F{{ cookiecutter.github_username }}.com%2F{{ cookiecutter.project_slug }}%2Fdoto-badge.json)](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/search?q=todo+OR+fixme&type=)
+[![GitHub stars](https://img.shields.io/github/stars/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }})
 {%- endif %}
 
 {{ cookiecutter.project_short_description }}
