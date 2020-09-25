@@ -6,7 +6,7 @@ EMP_DIR := {{ cookiecutter.emp_dir }}
 CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/
 
 # Native compiler information
-CXX_nat := g++
+CXX ?= g++
 CFLAGS_nat := -O3 -DNDEBUG -msse4.2 $(CFLAGS_all)
 CFLAGS_nat_debug := -g $(CFLAGS_all)
 
@@ -18,7 +18,6 @@ OFLAGS_web_debug := -g4 -Oz -Wno-dollar-in-identifier-extension
 
 CFLAGS_web := $(CFLAGS_all) $(OFLAGS_web) $(OFLAGS_web_all)
 CFLAGS_web_debug := $(CFLAGS_all) $(OFLAGS_web_debug) $(OFLAGS_web_all)
-
 
 default: $(PROJECT)
 native: $(PROJECT)
@@ -34,7 +33,7 @@ debug-web:	$(PROJECT).js
 web-debug:	debug-web
 
 $(PROJECT):	source/native/$(PROJECT).cc
-	$(CXX_nat) $(CFLAGS_nat) source/native/$(PROJECT).cc -o $(PROJECT)
+	$(CXX) $(CFLAGS_nat) source/native/$(PROJECT).cc -o $(PROJECT)
 	@echo To build the web version use: make web
 
 $(PROJECT).js: source/web/$(PROJECT)-web.cc
