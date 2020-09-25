@@ -23,6 +23,8 @@ Check out the live in-browser web app at [https://{{ cookiecutter.github_usernam
 
 -   TODO
 
+![cookie monster example](docs/assets/cookie.gif)
+
 ## Credits
 
 This package was created with [Cookiecutter][] and the [devosoft/cookiecutter-empirical-project][] project template.

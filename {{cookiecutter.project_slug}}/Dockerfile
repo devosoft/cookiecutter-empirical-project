@@ -4,6 +4,11 @@ USER root
 
 COPY . /opt/{{cookiecutter.project_slug}}
 
+RUN \
+  pip3 install -r /opt/conduit/docs/requirements.txt \
+    && \
+  echo "installed documentation build requirements"
+
 # make sure unprivileged user has access to new files in opt
 # adapted from https://stackoverflow.com/a/27703359
 # and https://superuser.com/a/235398

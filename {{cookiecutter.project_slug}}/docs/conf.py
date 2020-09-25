@@ -20,6 +20,7 @@
 #
 import os
 import sys
+import subprocess
 import sphinx_rtd_theme
 
 # -- General configuration ---------------------------------------------
@@ -169,8 +170,12 @@ texinfo_documents = [
 # on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
+if on_rtd: # rtd doesn't run Makefile, so we have to copy assets ourself
+    subprocess.call(
+        'mkdir -p _build/html/docs/; cp -r assets _build/html/docs/',
+        shell=True,
+    )
+else:  # only import and set the theme if we're building docs locally
     import sphinx_rtd_theme
     html_theme = 'sphinx_rtd_theme'
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-
