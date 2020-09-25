@@ -5,7 +5,16 @@ USER root
 COPY . /opt/{{cookiecutter.project_slug}}
 
 RUN \
-  pip3 install -r /opt/conduit/docs/requirements.txt \
+  apt-get install -qq \
+    python-virtualenv \
+    python3-virtualenv \
+    python-pip \
+    python3-pip \
+    && \
+  echo "installed python dependencies"
+
+RUN \
+  pip3 install -r /opt/{{cookiecutter.project_slug}}/docs/requirements.txt \
     && \
   echo "installed documentation build requirements"
 
