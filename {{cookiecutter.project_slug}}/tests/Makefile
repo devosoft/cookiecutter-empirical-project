@@ -10,12 +10,12 @@ FLAGS = -std=c++17 -pthread -Wall -Wno-unused-function -Wno-unused-private-field
 
 default: test
 
-test-%: %.cc ../third-party/Catch/single_include/catch2/catch.hpp
+test-%: %.cpp ../third-party/Catch/single_include/catch2/catch.hpp
 	$(CXX) $(FLAGS) $< -o $@.out
 	# execute test
 	./$@.out
 
-cov-%: %.cc ../third-party/Catch/single_include/catch2/catch.hpp
+cov-%: %.cpp ../third-party/Catch/single_include/catch2/catch.hpp
 	$(CXX) $(FLAGS) $< -o $@.out
 	#echo "running $@.out"
 	# execute test

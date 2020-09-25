@@ -12,7 +12,7 @@
 *.swo
 *.wasm
 *.wast
-*-bak.cc
+*-bak.cpp
 *tmp.*
 
 .DS_Store
@@ -23,4 +23,3 @@ Empirical/
 emsdk/
 
 {{ cookiecutter.project_slug }}
-

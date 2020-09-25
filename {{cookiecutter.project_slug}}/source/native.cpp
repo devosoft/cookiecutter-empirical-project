@@ -7,7 +7,7 @@
 #include "base/vector.h"
 #include "config/command_line.h"
 
-#include "{{cookiecutter.project_slug}}/example.h"
+#include "{{cookiecutter.project_slug}}/example.hpp"
 
 // This is the main function for the NATIVE version of {{cookiecutter.project_name}}.
 

@@ -32,12 +32,12 @@ debug-web:	$(PROJECT).js
 
 web-debug:	debug-web
 
-$(PROJECT):	source/native.cc include/
-	$(CXX) $(CFLAGS_nat) source/native.cc -o $(PROJECT)
+$(PROJECT):	source/native.cpp include/
+	$(CXX) $(CFLAGS_nat) source/native.cpp -o $(PROJECT)
 	@echo To build the web version use: make web
 
-$(PROJECT).js: source/web.cc include/
-	cd third-party/emsdk && . ./emsdk_env.sh && cd - && $(CXX_web) $(CFLAGS_web) source/web.cc -o web/$(PROJECT).js
+$(PROJECT).js: source/web.cpp include/
+	cd third-party/emsdk && . ./emsdk_env.sh && cd - && $(CXX_web) $(CFLAGS_web) source/web.cpp -o web/$(PROJECT).js
 
 docs:
 	cd docs && make html

@@ -6,7 +6,7 @@
 
 #include "web/web.h"
 
-#include "{{cookiecutter.project_slug}}/example.h"
+#include "{{cookiecutter.project_slug}}/example.hpp"
 
 namespace UI = emp::web;
 
