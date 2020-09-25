@@ -42,7 +42,7 @@ jobs:
     install:
     - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
     - docker ps -a
-    script: sudo docker run {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make test"
+    script: sudo docker run --cap-add=SYS_ADMIN {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make test"
 
   - name: Docs
     install:
