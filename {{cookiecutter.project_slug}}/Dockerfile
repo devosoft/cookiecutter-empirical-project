@@ -58,3 +58,6 @@ RUN \
   make install-test-dependencies \
     && \
   echo "installed test dependencies"
+
+# Define default working directory.
+WORKDIR /opt/{{cookiecutter.project_slug}}
