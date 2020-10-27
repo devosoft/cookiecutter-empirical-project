@@ -7,7 +7,7 @@
   "project_short_description": "An instantiation of the Cookiecutter Empirical Project.",
   "version": "0.1.0",
   "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
-  "emp_dir": "third-party/Empirical/source",
+  "emp_dir": "third-party/Empirical/include",
   "deployment_branch": "master",
   "landing_page": ["Yes", "No"],
   "docker_username": "{{ cookiecutter.github_username }}"

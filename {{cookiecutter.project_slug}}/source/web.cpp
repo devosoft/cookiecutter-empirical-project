@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "web/web.h"
+#include "emp/web/web.hpp"
 
 #include "{{cookiecutter.project_slug}}/example.hpp"
 
