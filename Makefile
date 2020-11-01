@@ -1,6 +1,6 @@
 .PHONY: test clean
 
-COOKIECUTTER_EMP_DIR ?= third-party/Empirical/source
+COOKIECUTTER_EMP_DIR ?= third-party/Empirical/include
 
 ../cut-cookie:
 	mkdir -p ../cut-cookie

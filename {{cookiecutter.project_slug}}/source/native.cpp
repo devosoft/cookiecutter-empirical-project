@@ -4,8 +4,8 @@
 
 #include <iostream>
 
-#include "base/vector.h"
-#include "config/command_line.h"
+#include "emp/base/vector.hpp"
+#include "emp/config/command_line.hpp"
 
 #include "{{cookiecutter.project_slug}}/example.hpp"
 
