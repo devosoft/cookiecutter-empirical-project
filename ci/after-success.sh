@@ -9,4 +9,7 @@ git remote add origin "https://mmore500:${GH_TOKEN}@github.com/devosoft/cookiecu
 git checkout -b cut-cookie
 git add .
 git commit --message "GitHub Action ${GITHUB_RUN_NUMBER}"
-git push --force --quiet origin cut-cookie
+# fallback adapted from https://stackoverflow.com/a/29380765
+git push --force --quiet origin cut-cookie || \
+  ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts; \
+  git push --force --quiet origin cut-cookie
