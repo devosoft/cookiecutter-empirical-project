@@ -12,7 +12,8 @@ jobs:
   clang-debug:
     name: Unit Tests (clang, debug mode)
     runs-on: ubuntu-16.04
-    env: CXX=clang++
+    env:
+      CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -26,7 +27,8 @@ jobs:
   gcc-debug:
     name: Unit Tests (gcc, debug mode)
     runs-on: ubuntu-16.04
-    env: CXX=g++
+    env:
+      CXX: g++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -40,7 +42,8 @@ jobs:
   clang-fulldebug:
     name: Unit Tests (clang, full debug mode)
     runs-on: ubuntu-16.04
-    env: CXX=clang++
+    env:
+      CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -53,7 +56,8 @@ jobs:
   gcc-fulldebug:
     name: Unit Tests (gcc, full debug mode)
     runs-on: ubuntu-16.04
-    env: CXX=g++
+    env:
+      CXX: g++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -67,7 +71,8 @@ jobs:
   clang-opt:
     name: Unit Tests (clang, opt mode)
     runs-on: ubuntu-16.04
-    env: CXX=clang++
+    env:
+      CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -80,7 +85,8 @@ jobs:
   gcc-opt:
     name: Unit Tests (gcc, opt mode)
     runs-on: ubuntu-16.04
-    env: CXX=g++
+    env:
+      CXX: g++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -93,7 +99,8 @@ jobs:
   coverage:
     name: Coverage
     runs-on: ubuntu-16.04
-    env: CXX=clang++
+    env:
+      CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -119,7 +126,8 @@ jobs:
   source-clang:
     name: Source (clang)
     runs-on: ubuntu-16.04
-    env: CXX=clang++
+    env:
+      CXX: clang++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -136,7 +144,8 @@ jobs:
   source-gcc:
     name: Source (gcc)
     runs-on: ubuntu-16.04
-    env: CXX=g++
+    env:
+      CXX: g++
     steps:
       - uses: actions/checkout@v2
         with:
@@ -160,7 +169,8 @@ jobs:
       - coverage
       - source-gcc
       - source-clang
-    env: GH_TOKEN=${{ '{{' }} secrets.GITHUB_TOKEN {{ '}}' }}
+    env:
+      GH_TOKEN: ${{ '{{' }} secrets.GITHUB_TOKEN {{ '}}' }}
     steps:
       - uses: actions/checkout@v2
         with:
