@@ -177,7 +177,7 @@ jobs:
           submodules: 'recursive'
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
-      - run: docker run -e "GH_TOKEN=${GH_TOKEN}" -e GITHUB_RUN_NUMBER=${GITHUB_RUN_NUMBER}" {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && source third-party/emsdk/emsdk_env.sh && make web && make badges && ./ci/deploy_gh_pages.sh"
+      - run: docker run -e "GH_TOKEN=${GH_TOKEN}" -e GITHUB_RUN_NUMBER=${GITHUB_RUN_NUMBER}" -e "GITHUB_ACTOR=${GITHUB_ACTOR}" -e "GITHUB_REPOSITORY=${GITHUB_REPOSITORY}" {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && source third-party/emsdk/emsdk_env.sh && make web && make badges && ./ci/deploy_gh_pages.sh"
 
   # - name: DockerHub
   #   if: (type = push AND branch IN ({{ cookiecutter.deployment_branch }}))
