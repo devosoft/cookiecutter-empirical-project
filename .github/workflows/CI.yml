@@ -23,4 +23,4 @@ jobs:
       # RE: puppeteer in Docker,
       # see https://github.com/puppeteer/puppeteer/issues/3451#issuecomment-523961368
       # and https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#setting-up-chrome-linux-sandbox
-      - run: tar -p -cv * | sudo docker run --cap-add=SYS_ADMIN -e CXX -e GH_TOKEN -e GITHUB_RUN_NUMBER -e GH_TOKEN -i devosoft/empirical:latest /bin/bash -c "set -x && mkdir /opt/work && tar -px -C /opt/work && cd /opt/work && git config --global user.email 'octocat@github.com' && git config --global user.name 'GitHub Actions' && make test && chmod +x /opt/work/ci/after-success.sh && /opt/work/ci/after-success.sh"
+      - run: tar -p -cv * | sudo docker run --cap-add=SYS_ADMIN -e CXX=$CXX -e GITHUB_RUN_NUMBER=$GITHUB_RUN_NUMBER -e GH_TOKEN=$GH_TOKEN -i devosoft/empirical:latest /bin/bash -c "set -x && mkdir /opt/work && tar -px -C /opt/work && cd /opt/work && git config --global user.email 'octocat@github.com' && git config --global user.name 'GitHub Actions' && make test && chmod +x /opt/work/ci/after-success.sh && /opt/work/ci/after-success.sh"
