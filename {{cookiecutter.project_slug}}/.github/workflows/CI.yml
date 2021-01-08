@@ -1,0 +1,179 @@
+name: CI
+on:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches:
+      - '**'
+  schedule:
+    - cron: '0 0 * * 0'
+jobs:
+
+  clang-debug:
+    name: Unit Tests (clang, debug mode)
+    runs-on: ubuntu-16.04
+    env: CXX=clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+      - run: docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make"
+
+
+  gcc-debug:
+    name: Unit Tests (gcc, debug mode)
+    runs-on: ubuntu-16.04
+    env: CXX=g++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+      - run: docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make"
+
+
+  clang-fulldebug:
+    name: Unit Tests (clang, full debug mode)
+    runs-on: ubuntu-16.04
+    env: CXX=clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+      - run: docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make fulldebug"
+
+  gcc-fulldebug:
+    name: Unit Tests (gcc, full debug mode)
+    runs-on: ubuntu-16.04
+    env: CXX=g++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+      - run: docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make fulldebug"
+
+
+  clang-opt:
+    name: Unit Tests (clang, opt mode)
+    runs-on: ubuntu-16.04
+    env: CXX=clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+      - run: docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make opt"
+
+  gcc-opt:
+    name: Unit Tests (gcc, opt mode)
+    runs-on: ubuntu-16.04
+    env: CXX=g++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+      - run: docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make opt"
+
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-16.04
+    env: CXX=clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+      - run: ci_env=`bash <(curl -s https://codecov.io/env)`
+      - run: docker run $ci_env -e CXX {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make coverage && bash <(curl -s https://codecov.io/bash)"
+
+  docs:
+    name: Docs
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+      - run: docker run -e CXX --cap-add=SYS_ADMIN -e CXX -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make"
+
+  source-clang:
+    name: Source (clang)
+    runs-on: ubuntu-16.04
+    env: CXX=clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+    install:
+    - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+    - docker ps -a
+    script:
+    - sudo docker run -e CXX --cap-add=SYS_ADMIN {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make test"
+
+  source-gcc:
+    name: Source (gcc)
+    runs-on: ubuntu-16.04
+    env: CXX=g++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker ps -a
+      - run: docker run -e CXX --cap-add=SYS_ADMIN {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && make test"
+
+  deploy-pages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-16.04
+    if: github.ref == 'refs/heads/master'
+    needs:
+      - clang-debug
+      - gcc-debug
+      - clang-fulldebug
+      - gcc-fulldebug
+      - clang-opt
+      - gcc-opt
+      - coverage
+      - source-gcc
+      - source-clang
+    env: GH_TOKEN=${{ '{{' }} secrets.GITHUB_TOKEN {{ '}}' }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+      - run: docker run -e GH_TOKEN -e GITHUB_RUN_NUMBER {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "cd /opt/{{ cookiecutter.project_slug }} && source third-party/emsdk/emsdk_env.sh && make web && make badges && ./ci/deploy_gh_pages.sh"
+
+  # - name: DockerHub
+  #   if: (type = push AND branch IN ({{ cookiecutter.deployment_branch }}))
+  #   install:
+  #   - docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
+  #   - docker ps -a
+  #   script:
+  #   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  #   - docker push {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }}
