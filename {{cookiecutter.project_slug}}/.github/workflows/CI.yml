@@ -121,7 +121,7 @@ jobs:
       - uses: docker-practice/actions-setup-docker@v1
       - run: docker build -t {{ cookiecutter.docker_username }}/{{ cookiecutter.project_slug }} .
       - run: docker ps -a
-      - run: docker run -e "CXX=${CXX}" --cap-add=SYS_ADMIN -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make"
+      - run: docker run --cap-add=SYS_ADMIN -i {{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }} /bin/bash -c "set -x && cd /opt/{{ cookiecutter.project_slug }}/tests && make"
 
   source-clang:
     name: Source (clang)
