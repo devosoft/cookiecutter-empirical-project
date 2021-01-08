@@ -5,10 +5,10 @@
 # Adopted from https://github.com/devosoft/cookiecutter-empirical-project#quickstart
 git init
 git add .
-git submodule add -b v2.x git@github.com:philsquared/Catch.git third-party/Catch
-git submodule add -b master git@github.com:devosoft/Empirical.git third-party/Empirical
-git submodule add git@github.com:emilydolson/force-cover.git third-party/force-cover
-git submodule add git@github.com:emscripten-core/emsdk.git third-party/emsdk
+git submodule add -b v2.x https://github.com/philsquared/Catch.git third-party/Catch
+git submodule add -b master https://github.com/devosoft/Empirical.git third-party/Empirical
+git submodule add https://github.com/emilydolson/force-cover.git third-party/force-cover
+git submodule add https://github.com/emscripten-core/emsdk.git third-party/emsdk
 git submodule init
 git submodule update --recursive --init
 
