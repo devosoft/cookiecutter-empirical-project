@@ -174,7 +174,7 @@ jobs:
   deploy-pages:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-16.04
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/cut-cookie'
     needs:
       - clang-debug
       - gcc-debug
