@@ -5,21 +5,13 @@ USER root
 COPY . /opt/{{cookiecutter.project_slug}}
 
 RUN \
-  apt-get install -qq \
-    python-virtualenv \
-    python3-virtualenv \
-    python-pip \
-    python3-pip \
-    doxygen \
-    && \
-  echo "installed docs dependencies"
-
-RUN \
   pip3 install -r /opt/{{cookiecutter.project_slug}}/docs/requirements.txt \
     && \
   echo "installed documentation build requirements"
 
 RUN \
+  find /etc/apt -type f -name '*.list' -exec sed -i 's/^# \(deb.*-backports.*\)/\1/; s/^# \(deb.*-updates.*\)/\1/; s/^# \(deb.*-proposed.*\)/\1/; s/^# \(deb.*-security.*\)/\1/' {} + \
+    && \
   add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && \
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
@@ -28,7 +20,7 @@ RUN \
     && \
   apt-get update -qq \
     && \
-  apt-get install -y cmake build-essential python-virtualenv python-pip nodejs tar gzip libclang-7-dev llvm-7 clang-7 libstdc++-7-dev gdb \
+  apt-get install -y cmake build-essential python-virtualenv python-pip nodejs tar gzip libclang-7-dev llvm-7 llvm-7-dev clang-7 libstdc++-7-dev gdb \
     && \
   update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-7 90 \
     && \
