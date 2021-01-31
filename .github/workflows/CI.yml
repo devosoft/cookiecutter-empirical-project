@@ -1,0 +1,207 @@
+name: CI
+on:
+  push:
+    branches: [ master, dev, cut-cookie ]
+  pull_request:
+    branches:
+      - '**'
+  schedule:
+    - cron: '0 0 * * 0'
+jobs:
+
+  clang-debug:
+    name: Unit Tests (clang, debug mode)
+    runs-on: ubuntu-16.04
+    env:
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: docker run -e "CXX=${CXX}" --cap-add=SYS_ADMIN -e "CXX=${CXX}" -i devosoft/cookiecutter-empirical-project /bin/bash -c "set -x && cd /opt/cookiecutter-empirical-project/tests && make"
+
+
+  gcc-debug:
+    name: Unit Tests (gcc, debug mode)
+    runs-on: ubuntu-16.04
+    env:
+      CXX: g++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: docker run -e "CXX=${CXX}" --cap-add=SYS_ADMIN -e "CXX=${CXX}" -i devosoft/cookiecutter-empirical-project /bin/bash -c "set -x && cd /opt/cookiecutter-empirical-project/tests && make"
+
+
+  clang-fulldebug:
+    name: Unit Tests (clang, full debug mode)
+    runs-on: ubuntu-16.04
+    env:
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: docker run -e "CXX=${CXX}" --cap-add=SYS_ADMIN -e "CXX=${CXX}" -i devosoft/cookiecutter-empirical-project /bin/bash -c "set -x && cd /opt/cookiecutter-empirical-project/tests && make fulldebug"
+
+  gcc-fulldebug:
+    name: Unit Tests (gcc, full debug mode)
+    runs-on: ubuntu-16.04
+    env:
+      CXX: g++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: docker run -e "CXX=${CXX}" --cap-add=SYS_ADMIN -e "CXX=${CXX}" -i devosoft/cookiecutter-empirical-project /bin/bash -c "set -x && cd /opt/cookiecutter-empirical-project/tests && make fulldebug"
+
+
+  clang-opt:
+    name: Unit Tests (clang, opt mode)
+    runs-on: ubuntu-16.04
+    env:
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: docker run -e "CXX=${CXX}" --cap-add=SYS_ADMIN -e "CXX=${CXX}" -i devosoft/cookiecutter-empirical-project /bin/bash -c "set -x && cd /opt/cookiecutter-empirical-project/tests && make opt"
+
+  gcc-opt:
+    name: Unit Tests (gcc, opt mode)
+    runs-on: ubuntu-16.04
+    env:
+      CXX: g++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: docker run -e "CXX=${CXX}" --cap-add=SYS_ADMIN -e "CXX=${CXX}" -i devosoft/cookiecutter-empirical-project /bin/bash -c "set -x && cd /opt/cookiecutter-empirical-project/tests && make opt"
+
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-16.04
+    env:
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: ci_env=`bash <(curl -s https://codecov.io/env)`
+      - run: docker run $ci_env -e "CXX=${CXX}" devosoft/cookiecutter-empirical-project /bin/bash -c "cd /opt/cookiecutter-empirical-project && make coverage && bash <(curl -s https://codecov.io/bash)"
+
+  docs:
+    name: Docs
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: docker run --cap-add=SYS_ADMIN -i devosoft/cookiecutter-empirical-project /bin/bash -c "set -x && cd /opt/cookiecutter-empirical-project/tests && make"
+
+  source-clang:
+    name: Source (clang)
+    runs-on: ubuntu-16.04
+    env:
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: docker run -e "CXX=${CXX}" --cap-add=SYS_ADMIN devosoft/cookiecutter-empirical-project /bin/bash -c "cd /opt/cookiecutter-empirical-project && make test"
+
+  source-gcc:
+    name: Source (gcc)
+    runs-on: ubuntu-16.04
+    env:
+      CXX: g++
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker ps -a
+      - run: docker run -e "CXX=${CXX}" --cap-add=SYS_ADMIN devosoft/cookiecutter-empirical-project /bin/bash -c "cd /opt/cookiecutter-empirical-project && make test"
+
+  deploy-pages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-16.04
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/cut-cookie'
+    needs:
+      - clang-debug
+      - gcc-debug
+      - clang-fulldebug
+      - gcc-fulldebug
+      - clang-opt
+      - gcc-opt
+      - coverage
+      - source-gcc
+      - source-clang
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+      # Adapted from https://askubuntu.com/a/524368
+      - run: echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo -h 127.0.0.1 tee -a /etc/hosts
+      - uses: docker-practice/actions-setup-docker@v1
+      - run: docker build -t devosoft/cookiecutter-empirical-project .
+      - run: docker run -e "GH_TOKEN=${GH_TOKEN}" -e "GITHUB_RUN_NUMBER=${GITHUB_RUN_NUMBER}" -e "GITHUB_ACTOR=${GITHUB_ACTOR}" -e "GITHUB_REPOSITORY=${GITHUB_REPOSITORY}" devosoft/cookiecutter-empirical-project /bin/bash -c "cd /opt/cookiecutter-empirical-project && source third-party/emsdk/emsdk_env.sh && make web && make badges && ./ci/deploy_gh_pages.sh"
+
+  # - name: DockerHub
+  #   if: (type = push AND branch IN (cut-cookie))
+  #   install:
+  #   - docker build -t devosoft/cookiecutter-empirical-project .
+  #   - docker ps -a
+  #   script:
+  #   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  #   - docker push devosoft/cookiecutter-empirical-project
