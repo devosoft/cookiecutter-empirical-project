@@ -6,7 +6,7 @@
 <!-- <meta http-equiv="refresh" content="0; URL='{{ cookiecutter.project_slug }}'" /> -->
 {% else -%}
 <!-- remove this meta tag to disable auto redirect from the landing page -->
-<meta http-equiv="refresh" content="0; URL='{{ cookiecutter.project_slug }}'" />
+<meta http-equiv="refresh" content="0; URL='{{ cookiecutter.project_slug }}.html'" />
 {% endif %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 <meta charset="utf-8">
@@ -28,7 +28,7 @@
        </div>
        <div class="card">
          <div class="card-body">
-           <a href="{{ cookiecutter.project_slug }}" role="button" class="btn btn-secondary btn-lg btn-block">go!</a>
+           <a href="{{ cookiecutter.project_slug }}.html" role="button" class="btn btn-secondary btn-lg btn-block">go!</a>
            <a href="https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.html" role="button" class="btn btn-secondary btn-lg btn-block">source</a>
          </div>
        </div>
