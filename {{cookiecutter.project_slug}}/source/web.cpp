@@ -17,7 +17,7 @@ namespace UI = emp::web;
 
 UI::Document doc("emp_base");
 
-Config cfg;
+MyExampleConfig cfg;
 emp::prefab::ConfigPanel example_config_panel(cfg);
 
 int main()
@@ -32,8 +32,6 @@ int main()
     std::exit(EXIT_FAILURE);
   example_config_panel.Setup();
   doc << example_config_panel.GetConfigPanelDiv();
-
-  
 
   std::cout << "Hello, console!" << std::endl;
 

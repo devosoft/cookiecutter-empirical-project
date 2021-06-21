@@ -2,7 +2,7 @@
 
 #include "emp/config/config.hpp"
 
-EMP_BUILD_CONFIG( SampleConfig,
+EMP_BUILD_CONFIG( MyExampleConfig,
   GROUP(GLOBAL_SETTINGS, "Global settings"),
   VALUE(FIRST_NUMBER, int, 5, "Here's a number (call me maybe)"),
   VALUE(PROBABLITY, double, .55, "Not quite a fair flip"),
