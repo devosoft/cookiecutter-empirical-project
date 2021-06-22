@@ -8,7 +8,7 @@
 #include "{{cookiecutter.project_slug}}/ProjectConfig.hpp"
 
 void SetupProjectConfig({{ cookiecutter.project_name.replace(' ', '') }}Config & config)  {
-  auto specs = emp::ArgManager::make_builtin_specs(&cfg);
+  auto specs = emp::ArgManager::make_builtin_specs(&config);
   emp::ArgManager am(emp::web::GetUrlParams(), specs);
   am.UseCallbacks();
   if (am.HasUnused())
@@ -16,7 +16,7 @@ void SetupProjectConfig({{ cookiecutter.project_name.replace(' ', '') }}Config &
 }
 
 void SetupProjectConfig({{ cookiecutter.project_name.replace(' ', '') }}Config & config, int argc, char* argv[]) {
-  auto specs = emp::ArgManager::make_builtin_specs(&cfg);
+  auto specs = emp::ArgManager::make_builtin_specs(&config);
   emp::ArgManager am(argc, argv, specs);
   am.UseCallbacks();
   if (am.HasUnused())
