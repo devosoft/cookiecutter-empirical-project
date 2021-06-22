@@ -17,7 +17,7 @@ UI::Document doc("emp_base");
 
 {{ cookiecutter.project_name.replace(' ', '') }}Config cfg;
 emp::prefab::ConfigPanel example_config_panel(cfg);
-TextArea example_area;
+UI::TextArea example_area;
 
 int main()
 {
