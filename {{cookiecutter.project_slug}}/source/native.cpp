@@ -5,8 +5,6 @@
 #include <iostream>
 
 #include "emp/base/vector.hpp"
-#include "emp/config/command_line.hpp"
-#include "emp/config/ArgManager.hpp"
 
 #include "{{cookiecutter.project_slug}}/example.hpp"
 #include "{{cookiecutter.project_slug}}/ProjectConfig.hpp"
@@ -18,6 +16,8 @@
 int main(int argc, char* argv[])
 {
   std::cout << "Hello, world!" << std::endl;
+  
+  // Set up a configuration panel for native application
   SetupProjectConfig(cfg, argc, argv);
   cfg.Write(std::cout);
 

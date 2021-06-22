@@ -4,10 +4,7 @@
 
 #include <iostream>
 
-#include "emp/config/command_line.hpp"
-#include "emp/config/ArgManager.hpp"
 #include "emp/prefab/ConfigPanel.hpp"
-#include "emp/web/UrlParams.hpp"
 #include "emp/web/web.hpp"
 
 #include "{{cookiecutter.project_slug}}/example.hpp"
@@ -24,7 +21,7 @@ int main()
 {
   doc << "<h1>Hello, browser!</h1>";
 
-  // Set up a configuration panel for web
+  // Set up a configuration panel for web application
   SetupProjectConfig()
   example_config_panel.Setup();
   doc << example_config_panel.GetConfigPanelDiv();
