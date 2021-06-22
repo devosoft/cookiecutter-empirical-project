@@ -22,7 +22,7 @@ int main()
   doc << "<h1>Hello, browser!</h1>";
 
   // Set up a configuration panel for web application
-  SetupProjectConfig()
+  SetupProjectConfig(cfg);
   example_config_panel.Setup();
   doc << example_config_panel.GetConfigPanelDiv();
 
