@@ -1,5 +1,7 @@
 #pragma once
 
+#include <filesystem>
+
 #include "emp/config/ArgManager.hpp"
 #include "emp/prefab/ConfigPanel.hpp"
 #include "emp/web/UrlParams.hpp"
@@ -10,14 +12,20 @@
 void SetupProjectConfig({{ cookiecutter.project_name.replace(' ', '') }}Config & config)  {
   auto specs = emp::ArgManager::make_builtin_specs(&config);
   emp::ArgManager am(emp::web::GetUrlParams(), specs);
-  am.UseCallbacks();
-  if (am.HasUnused())
-    std::exit(EXIT_FAILURE);
+  AddExistingConfig(am);
 }
 
 void SetupProjectConfig({{ cookiecutter.project_name.replace(' ', '') }}Config & config, int argc, char* argv[]) {
   auto specs = emp::ArgManager::make_builtin_specs(&config);
   emp::ArgManager am(argc, argv, specs);
+  AddExistingConfig(am);
+}
+
+void AddExistingConfig(emp::ArgManager & am) {
+  if(std::filesystem::exists("{{cookiecutter.project_slug}}.cfg")) {
+    std::cout << "Configuration read from {{cookiecutter.project_slug}}.cfg" << "\n";
+    config.Read("{{cookiecutter.project_slug}}.cfg");
+  }
   am.UseCallbacks();
   if (am.HasUnused())
     std::exit(EXIT_FAILURE);
