@@ -4,32 +4,28 @@
 
 #include <iostream>
 
-#include "emp/web/web.hpp"
-
-#include "{{cookiecutter.project_slug}}/example.hpp"
-#include "{{cookiecutter.project_slug}}/exampleConfig.hpp"
 #include "emp/config/command_line.hpp"
 #include "emp/config/ArgManager.hpp"
 #include "emp/prefab/ConfigPanel.hpp"
 #include "emp/web/UrlParams.hpp"
+#include "emp/web/web.hpp"
+
+#include "{{cookiecutter.project_slug}}/example.hpp"
+#include "{{cookiecutter.project_slug}}/ProjectConfig.hpp"
 
 namespace UI = emp::web;
 
 UI::Document doc("emp_base");
 
-MyExampleConfig cfg;
+{{ cookiecutter.project_name.replace(' ', '') }}Config cfg;
 emp::prefab::ConfigPanel example_config_panel(cfg);
 
 int main()
 {
   doc << "<h1>Hello, browser!</h1>";
 
-  // Set up a configuration panel and add it to the document
-  auto specs = emp::ArgManager::make_builtin_specs(&cfg);
-  emp::ArgManager am(emp::web::GetUrlParams(), specs);
-  am.UseCallbacks();
-  if (am.HasUnused())
-    std::exit(EXIT_FAILURE);
+  // Set up a configuration panel for web
+  SetupProjectConfig()
   example_config_panel.Setup();
   doc << example_config_panel.GetConfigPanelDiv();
 
