@@ -4,8 +4,7 @@
 
 EMP_BUILD_CONFIG( {{ cookiecutter.project_name.replace(' ', '') }}Config,
   GROUP(GLOBAL_SETTINGS, "Global settings"),
-  VALUE(LINES, int, 3, "Lines for example text area"),
-  VALUE(HEIGHT, double, .5, "Opacity of example text area"),
+  VALUE(SIZE, int, 300, "Size of example text area"),
   VALUE(COLOR, std::string, "red", "Text color for example text area"),
   GROUP(OTHER_PARAMETERS, "Miscellaneous settings"),
   VALUE(LUNCH_ORDER, std::string, "ham on five", "What's for lunch today"),
