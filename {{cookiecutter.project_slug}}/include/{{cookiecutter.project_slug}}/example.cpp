@@ -14,7 +14,7 @@ void SetupProjectConfig({{ cookiecutter.project_name.replace(' ', '') }}Config &
 }
 
 // Native version (uses command line arguments)
-void SetupProjectConfig({{ cookiecutter.project_name.replace(' ', '') }}Config & configint argc, char* argv[]) {
+void SetupProjectConfig({{ cookiecutter.project_name.replace(' ', '') }}Config & config, int argc, char* argv[]) {
   auto specs = emp::ArgManager::make_builtin_specs(&cfg);
   emp::ArgManager am(argc, argv, specs);
   am.UseCallbacks();
