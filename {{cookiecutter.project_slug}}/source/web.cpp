@@ -36,7 +36,7 @@ int main()
   UI::TextArea example_area("example_area");
   example_area.SetSize(cfg.SIZE(), cfg.SIZE());
   example_config_panel.SetOnChangeFun([](const std::string & val){
-    UI::TextArea& example_area = doc.TextArea("example_area");
+    UI::TextArea example_area = doc.TextArea("example_area");
     example_area.SetCSS("color", cfg.COLOR());
     example_area.Redraw();
   });
