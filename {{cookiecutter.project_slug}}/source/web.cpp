@@ -16,7 +16,7 @@ namespace UI = emp::web;
 
 UI::Document doc("emp_base");
 
-{{ cookiecutter.project_slug }}::Config cfg;
+{{ cookiecutter.project_slug.replace('-','_') }}::Config cfg;
 emp::prefab::ConfigPanel example_config_panel(cfg);
 
 int main()

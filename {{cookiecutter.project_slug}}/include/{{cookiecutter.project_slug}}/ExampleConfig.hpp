@@ -2,7 +2,7 @@
 
 #include "emp/config/config.hpp"
 
-namespace {{ cookiecutter.project_slug }} {
+namespace {{ cookiecutter.project_slug.replace('-','_') }} {
 
   EMP_BUILD_CONFIG(Config,
     GROUP(GLOBAL_SETTINGS, "Global settings"),

@@ -12,7 +12,7 @@
 
 // This is the main function for the NATIVE version of {{cookiecutter.project_name}}.
 
-{{ cookiecutter.project_slug }}::Config cfg;
+{{ cookiecutter.project_slug.replace('-','_') }}::Config cfg;
 
 int main(int argc, char* argv[])
 { 
