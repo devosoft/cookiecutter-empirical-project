@@ -3,6 +3,6 @@
 #include <iostream>
 
 bool example() {
-  std::cout << "example thing!" << std::endl;
+  std::cout << "example thing!" << "\n";
   return true;
 }
