@@ -3,12 +3,12 @@ PROJECT := {{ cookiecutter.project_slug }}
 EMP_DIR := {{ cookiecutter.emp_dir }}
 
 # Flags to use regardless of compiler
-CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/ -Iinclude/
+CFLAGS_all := -Wall -Wno-unused-function -lstdc++fs -std=c++17 -I$(EMP_DIR)/ -Iinclude/
 
 # Native compiler information
 CXX ?= g++
-CFLAGS_nat := -lstdc++fs -O3 -DNDEBUG -msse4.2 $(CFLAGS_all)
-CFLAGS_nat_debug := -lstdc++fs -g $(CFLAGS_all)
+CFLAGS_nat := -O3 -DNDEBUG -msse4.2 $(CFLAGS_all)
+CFLAGS_nat_debug := -g $(CFLAGS_all)
 
 # Emscripten compiler information
 CXX_web := emcc
