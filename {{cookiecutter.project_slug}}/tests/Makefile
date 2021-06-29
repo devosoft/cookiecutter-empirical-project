@@ -6,12 +6,12 @@ EMP_DIR := $(TO_ROOT)/{{ cookiecutter.emp_dir }}
 
 CXX ?= g++
 
-FLAGS = -std=c++17 -lstdc++fs -pthread -Wall -Wno-unused-function -Wno-unused-private-field -I$(TO_ROOT)/include/ -I$(TO_ROOT)/third-party/ -I$(EMP_DIR)
+FLAGS = -std=c++17 -pthread -Wall -Wno-unused-function -Wno-unused-private-field -I$(TO_ROOT)/include/ -I$(TO_ROOT)/third-party/ -I$(EMP_DIR)
 
 default: test
 
 test-%: %.cpp ../third-party/Catch/single_include/catch2/catch.hpp
-	$(CXX) $(FLAGS) $< -o $@.out
+	$(CXX) $(FLAGS) $< -o $@.out 
 	# execute test
 	./$@.out
 

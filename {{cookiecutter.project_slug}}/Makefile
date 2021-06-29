@@ -7,8 +7,8 @@ CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/ -Iinclude/
 
 # Native compiler information
 CXX ?= g++
-CFLAGS_nat := -O3 -DNDEBUG -msse4.2 $(CFLAGS_all) -lstdc++fs
-CFLAGS_nat_debug := -g $(CFLAGS_all) -lstdc++fs
+CFLAGS_nat := -O3 -DNDEBUG -msse4.2 $(CFLAGS_all)
+CFLAGS_nat_debug := -g $(CFLAGS_all)
 
 # Emscripten compiler information
 CXX_web := emcc
@@ -32,8 +32,9 @@ debug-web:	$(PROJECT).js
 
 web-debug:	debug-web
 
+# see https://stackoverflow.com/a/57760267 RE: -lstdc++fs
 $(PROJECT):	source/native.cpp include/
-	$(CXX) $(CFLAGS_nat) source/native.cpp -o $(PROJECT)
+	$(CXX) $(CFLAGS_nat) source/native.cpp -o $(PROJECT) -lstdc++fs
 	@echo To build the web version use: make web
 
 $(PROJECT).js: source/web.cpp include/
