@@ -6,7 +6,7 @@ EMP_DIR := {{ cookiecutter.emp_dir }}
 CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/ -Iinclude/
 
 # Native compiler information
-CXX ?= g++
+CXX ?= g++ -lstdc++fs
 CFLAGS_nat := -O3 -DNDEBUG -msse4.2 $(CFLAGS_all)
 CFLAGS_nat_debug := -g $(CFLAGS_all)
 
