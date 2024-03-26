@@ -2,7 +2,7 @@
   "dependencies": {
   },
   "devDependencies": {
-    "express": "4.16.3",
+    "express": "4.19.2",
     "puppeteer": "1.9.0"
   },
   "main": "index.js",
